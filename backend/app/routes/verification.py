@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
+
 from app.models.verification import Verification
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/verification",
