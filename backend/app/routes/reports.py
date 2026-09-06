@@ -1,6 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
+
 from app.models.report import Report
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/reports",
