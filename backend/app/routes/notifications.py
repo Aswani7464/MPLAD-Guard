@@ -1,5 +1,7 @@
 from fastapi import APIRouter
+
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/notifications",
