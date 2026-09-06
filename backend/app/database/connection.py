@@ -1,5 +1,9 @@
 from supabase import create_client, Client
+
 from app.config.settings import settings
+
+
+supabase: Client | None = None
 
 
 def get_supabase_client() -> Client:
@@ -12,9 +16,6 @@ def get_supabase_client() -> Client:
         settings.supabase_url,
         settings.supabase_key
     )
-
-
-supabase: Client | None = None
 
 
 def initialize_database():
