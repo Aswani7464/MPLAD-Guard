@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
+
 from app.models.user import User
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/auth",
@@ -16,7 +18,7 @@ def register_user(user: User):
         supabase
         .table("users")
         .select("*")
-        .eq("email", user.email)
+        .eq("email", str(user.email))
         .execute()
     )
 
@@ -31,7 +33,7 @@ def register_user(user: User):
         .table("users")
         .insert({
             "name": user.name,
-            "email": user.email,
+            "email": str(user.email),
             "role": user.role,
             "is_active": user.is_active
         })
