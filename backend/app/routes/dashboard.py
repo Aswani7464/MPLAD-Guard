@@ -1,5 +1,7 @@
 from fastapi import APIRouter
+
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/dashboard",
@@ -28,26 +30,18 @@ def dashboard_summary():
     project_data = projects.data or []
     risk_data = risks.data or []
 
-    total_projects = len(project_data)
-
-    high_risk_projects = len([
-        risk for risk in risk_data
-        if risk.get("risk_level") == "high"
-    ])
-
-    medium_risk_projects = len([
-        risk for risk in risk_data
-        if risk.get("risk_level") == "medium"
-    ])
-
-    low_risk_projects = len([
-        risk for risk in risk_data
-        if risk.get("risk_level") == "low"
-    ])
-
     return {
-        "total_projects": total_projects,
-        "high_risk_projects": high_risk_projects,
-        "medium_risk_projects": medium_risk_projects,
-        "low_risk_projects": low_risk_projects
+        "total_projects": len(project_data),
+        "high_risk_projects": len([
+            r for r in risk_data
+            if r.get("risk_level") == "high"
+        ]),
+        "medium_risk_projects": len([
+            r for r in risk_data
+            if r.get("risk_level") == "medium"
+        ]),
+        "low_risk_projects": len([
+            r for r in risk_data
+            if r.get("risk_level") == "low"
+        ])
     }
