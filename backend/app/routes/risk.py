@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
+
 from app.models.risk import Risk
 from app.database.connection import get_supabase_client
+
 
 router = APIRouter(
     prefix="/risk",
@@ -23,7 +25,7 @@ def get_project_risk(project_id: int):
     if not response.data:
         raise HTTPException(
             status_code=404,
-            detail="Risk information not found for this project."
+            detail="Risk information not found."
         )
 
     return response.data
