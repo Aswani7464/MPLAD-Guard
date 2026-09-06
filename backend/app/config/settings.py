@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     debug: bool = True
 
     database_url: str = ""
+
     supabase_url: str = ""
     supabase_key: str = ""
 
