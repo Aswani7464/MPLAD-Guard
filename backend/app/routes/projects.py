@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
+
 from app.models.project import Project
 from app.database import crud
+
 
 router = APIRouter(
     prefix="/projects",
@@ -45,9 +47,7 @@ def create_project(project: Project):
 
 @router.put("/{project_id}")
 def update_project(project_id: int, project: Project):
-    existing_project = crud.get_project_by_id(project_id)
-
-    if not existing_project:
+    if not crud.get_project_by_id(project_id):
         raise HTTPException(
             status_code=404,
             detail="Project not found."
@@ -73,9 +73,7 @@ def update_project(project_id: int, project: Project):
 
 @router.delete("/{project_id}")
 def delete_project(project_id: int):
-    existing_project = crud.get_project_by_id(project_id)
-
-    if not existing_project:
+    if not crud.get_project_by_id(project_id):
         raise HTTPException(
             status_code=404,
             detail="Project not found."
