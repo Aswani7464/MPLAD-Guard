@@ -18,6 +18,7 @@ import AdminPanel from './pages/AdminPanel.jsx'
 
 function ProtectedRoute({ children }) {
   const location = useLocation()
+
   const isLoggedIn = localStorage.getItem('mplad_user')
 
   if (!isLoggedIn) {
@@ -39,10 +40,10 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* Main entry */}
+        {/* Main entry - always start at Login */}
         <Route
           path="/"
-          element={<Navigate to="/dashboard" replace />}
+          element={<Navigate to="/login" replace />}
         />
 
         {/* Public pages */}
@@ -93,7 +94,7 @@ function App() {
         />
 
 
-        {/* Risk */}
+        {/* Risk Analysis */}
         <Route
           path="/risk"
           element={
@@ -184,7 +185,7 @@ function App() {
         {/* Unknown URL */}
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={<Navigate to="/login" replace />}
         />
 
       </Routes>
