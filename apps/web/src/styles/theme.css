@@ -1,1 +1,31 @@
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
 
+  --success-color: #16a34a;
+  --warning-color: #d97706;
+  --danger-color: #dc2626;
+  --critical-color: #991b1b;
+
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+
+  --background-color: #f5f7fa;
+  --surface-color: #ffffff;
+
+  --border-color: #e5e7eb;
+
+  --low-risk: #16a34a;
+  --medium-risk: #d97706;
+  --high-risk: #ea580c;
+  --critical-risk: #dc2626;
+
+  --navbar-height: 64px;
+  --sidebar-width: 240px;
+
+  --border-radius: 8px;
+  --card-radius: 10px;
+
+  --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

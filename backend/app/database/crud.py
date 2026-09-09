@@ -47,10 +47,22 @@ def create_project(project_data: dict):
 def update_project(project_id: int, project_data: dict):
     supabase = get_supabase_client()
 
+    # Update the project
     response = (
         supabase
         .table("projects")
-        .update(project_data)
+        .update({
+            "name": project_data.get("name"),
+            "description": project_data.get("description"),
+            "location": project_data.get("location"),
+            "latitude": project_data.get("latitude"),
+            "longitude": project_data.get("longitude"),
+            "budget": project_data.get("budget"),
+            "status": project_data.get("status"),
+            "completion_percentage": project_data.get(
+                "completion_percentage", 0
+            ),
+        })
         .eq("id", project_id)
         .execute()
     )
@@ -66,6 +78,19 @@ def delete_project(project_id: int):
         .table("projects")
         .delete()
         .eq("id", project_id)
+        .execute()
+    )
+
+    return response.data
+
+
+def create_notification(notification_data: dict):
+    supabase = get_supabase_client()
+
+    response = (
+        supabase
+        .table("notifications")
+        .insert(notification_data)
         .execute()
     )
 

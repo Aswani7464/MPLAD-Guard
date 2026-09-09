@@ -1,19 +1,14 @@
-from fastapi import APIRouter, HTTPException
-
+﻿from fastapi import APIRouter, HTTPException
 from app.models.verification import Verification
 from app.database.connection import get_supabase_client
+from app.database import crud
 
-
-router = APIRouter(
-    prefix="/verification",
-    tags=["Verification"]
-)
+router = APIRouter(prefix="/verification", tags=["Verification"])
 
 
 @router.get("/{project_id}")
 def get_verifications(project_id: int):
     supabase = get_supabase_client()
-
     response = (
         supabase
         .table("verification")
@@ -21,7 +16,6 @@ def get_verifications(project_id: int):
         .eq("project_id", project_id)
         .execute()
     )
-
     return response.data
 
 

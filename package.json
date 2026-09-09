@@ -1,0 +1,13 @@
+
+{
+  "name": "mplad-guard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Project Monitoring and Risk Analysis System",
+  "scripts": {
+    "web": "npm --prefix apps/web run dev",
+    "web:build": "npm --prefix apps/web run build",
+    "backend": "python -m uvicorn backend.app.main:app --reload"
+  }
+}
+

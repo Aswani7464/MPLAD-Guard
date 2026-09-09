@@ -1,1 +1,21 @@
+services:
 
+  backend:
+    build:
+      context: ./backend
+    container_name: mplad-guard-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+  web:
+    build:
+      context: ./apps/web
+    container_name: mplad-guard-web
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    command: npm run dev -- --host 0.0.0.0
